@@ -44,24 +44,23 @@ public class ListTests {
         list.add("포도");
         assertThat(list.get(1)).isEqualTo("포도");
     }
-//
-//    @Test
-//    void testContains() {
-//        list.add("Element1");
-//        list.add("Element2");
-//        assertTrue(list.contains("Element1"));
-//        assertFalse(list.contains("Element3"));
-//    }
-//
-//    @Test
-//    void testIndexOf() {
-//        list.add("Element1");
-//        list.add("Element2");
-//        list.add("Element1");
-//        assertEquals(0, list.indexOf("Element1"));
-//        assertEquals(1, list.indexOf("Element2"));
-//        assertEquals(-1, list.indexOf("Element3"));
-//    }
+
+    @Test
+    void testContains() {
+        list.add("Element1");
+        list.add("Element2");
+        assertThat(list.contains("Element1")).isEqualTo(true);
+        assertThat(list.contains("Element3")).isEqualTo(false);
+    }
+
+    @Test
+    void testIndexOf() {
+        list.add("Element1");
+        list.add("Element2");
+        list.add("Element1");
+        assertThat(list.indexOf("Element1")).isEqualTo(0);
+        assertThat(list.indexOf("Element3")).isEqualTo(-1);
+    }
 //
 //    @Test
 //    void testClear() {

@@ -51,4 +51,20 @@ public class MyArrayList<T> {
         }
         return newdata;
     }
+
+    public boolean contains(T element) {
+        for(T e : data)
+            if(e.equals(element))
+                return true;
+
+        return false;
+    }
+
+    public int indexOf(T element) {
+        for(int i=0 ; i<this.size ; i++){
+            if(data[i].equals(element))
+                return i;
+        }
+        return -1;
+    }
 }
