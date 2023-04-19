@@ -1,8 +1,12 @@
 package com.ll;
 
 public class MyArrayList<T> {
-    private T[] data = (T[]) new Object[0];
+    private T[] data;
     private int size;
+
+    public MyArrayList() {
+        data = (T[]) new Object[0];
+    }
 
     public int size() {
         return this.size;
