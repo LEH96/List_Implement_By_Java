@@ -15,7 +15,7 @@ public class ListTests {
     }
 
     @Test
-    @DisplayName("리스트 크기 확인")
+    @DisplayName("초기 리스트 크기 확인")
     void testSize() {
         assertThat(list.size()).isEqualTo(0);
     }
@@ -27,31 +27,23 @@ public class ListTests {
         list.add("포도");
         assertThat(list.size()).isEqualTo(2);
     }
-//
-//    @Test
-//    void testRemove() {
-//        list.add("Element1");
-//        list.add("Element2");
-//        list.add("Element3");
-//        assertEquals("Element2", list.remove(1));
-//        assertEquals(2, list.size());
-//    }
-//
-//    @Test
-//    void testGet() {
-//        list.add("Element1");
-//        list.add("Element2");
-//        assertEquals("Element1", list.get(0));
-//        assertEquals("Element2", list.get(1));
-//    }
-//
-//    @Test
-//    void testSize002() {
-//        list.add("Element1");
-//        list.add("Element2");
-//        list.add("Element3");
-//        assertEquals(3, list.size());
-//    }
+
+    @Test
+    @DisplayName("리스트에 요소 제거 후 크기 확인")
+    void testRemove() {
+        list.add("사과");
+        list.add("포도");
+        assertThat(list.remove(0)).isEqualTo("사과");
+        assertThat(list.size()).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("리스트에 요소 가져오기")
+    void testGet() {
+        list.add("사과");
+        list.add("포도");
+        assertThat(list.get(1)).isEqualTo("포도");
+    }
 //
 //    @Test
 //    void testContains() {
