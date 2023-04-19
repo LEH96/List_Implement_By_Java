@@ -19,6 +19,9 @@ public class MyArrayList<T> {
     }
 
     public T remove(int index) {
+        if(index >= data.length || index < 0)
+            throw new IndexOutOfBoundsException();
+
         T removedData = data[index];
         data[index] = null;
         data = decreaseListArr();
@@ -30,7 +33,7 @@ public class MyArrayList<T> {
         if(0 <= index && index <= this.size)
             return data[index];
 
-        return null;
+        throw new IndexOutOfBoundsException();
     }
 
     public boolean contains(T element) {
