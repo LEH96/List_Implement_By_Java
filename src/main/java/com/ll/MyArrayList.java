@@ -33,6 +33,27 @@ public class MyArrayList<T> {
         return null;
     }
 
+    public boolean contains(T element) {
+        for(T e : data)
+            if(e.equals(element))
+                return true;
+
+        return false;
+    }
+
+    public int indexOf(T element) {
+        for(int i=0 ; i<this.size ; i++){
+            if(data[i].equals(element))
+                return i;
+        }
+        return -1;
+    }
+
+    public void clear() {
+        this.size = 0;
+        data = (T[]) new Object[0];
+    }
+
     private T[] increaseListArr() {
         T[] newdata = (T[]) new Object[this.size+1];
         if(this.size > 0)
@@ -50,21 +71,5 @@ public class MyArrayList<T> {
                 newdata[index++] = element;
         }
         return newdata;
-    }
-
-    public boolean contains(T element) {
-        for(T e : data)
-            if(e.equals(element))
-                return true;
-
-        return false;
-    }
-
-    public int indexOf(T element) {
-        for(int i=0 ; i<this.size ; i++){
-            if(data[i].equals(element))
-                return i;
-        }
-        return -1;
     }
 }

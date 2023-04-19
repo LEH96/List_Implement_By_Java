@@ -61,14 +61,14 @@ public class ListTests {
         assertThat(list.indexOf("Element1")).isEqualTo(0);
         assertThat(list.indexOf("Element3")).isEqualTo(-1);
     }
-//
-//    @Test
-//    void testClear() {
-//        list.add("Element1");
-//        list.add("Element2");
-//        list.add("Element3");
-//        list.clear();
-//        assertEquals(0, list.size());
-//        assertTrue(list.isEmpty());
-//    }
+
+    @Test
+    void testClear() {
+        list.add("Element1");
+        list.add("Element2");
+        list.add("Element3");
+        list.clear();
+        assertThat(list.size()).isEqualTo(0);
+        assertThat(list.isEmpty()).isEqualTo(true);
+    }
 }
