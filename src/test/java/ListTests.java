@@ -4,7 +4,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.stream.IntStream;
+
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIOException;
 
 public class ListTests {
     private MyArrayList<String> list;
@@ -46,6 +49,7 @@ public class ListTests {
     }
 
     @Test
+    @DisplayName("리스트에 요소 추가 후 포함 여부 확인")
     void testContains() {
         list.add("Element1");
         list.add("Element2");
@@ -54,6 +58,7 @@ public class ListTests {
     }
 
     @Test
+    @DisplayName("리스트의 요소 인덱스 찾기")
     void testIndexOf() {
         list.add("Element1");
         list.add("Element2");
@@ -63,6 +68,7 @@ public class ListTests {
     }
 
     @Test
+    @DisplayName("리스트 초기화")
     void testClear() {
         list.add("Element1");
         list.add("Element2");
@@ -70,5 +76,40 @@ public class ListTests {
         list.clear();
         assertThat(list.size()).isEqualTo(0);
         assertThat(list.isEmpty()).isEqualTo(true);
+    }
+
+    @Test
+    @DisplayName("리스트 길이 지정, 길이 보다 많은 요소 추가 후 체크")
+    void testAdd2() {
+        list = new MyArrayList<>(20);
+        IntStream.range(0, 100)
+                .forEach(e -> list.add("사과 %d".formatted(e)));
+
+        assertThat(list.size()).isEqualTo(100);
+        assertThat(list.indexOf("사과 5")).isEqualTo(5);
+        assertThat(list.indexOf("사과 100")).isEqualTo(-1);
+    }
+
+    @Test
+    @DisplayName("리스트에 다른 요소 추가")
+    void testAdd3() {
+        MyArrayList<Boolean> list = new MyArrayList<>();
+
+        list.add(true);
+        list.add(false);
+        list.add(true);
+
+        assertThat(list.size()).isEqualTo(3);
+        assertThat(list.indexOf(false)).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("리스트 중간에 인덱스로 요소 집어넣기")
+    void testAddAtIndex() {
+        list.add("사과1");
+        list.add("사과2");
+        list.add(1, "사과3");
+
+        assertThat(list.get(1)).isEqualTo("사과3");
     }
 }
