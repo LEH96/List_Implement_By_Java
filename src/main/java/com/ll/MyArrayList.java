@@ -22,7 +22,7 @@ public class MyArrayList<T> {
     public boolean add(T element) {
         if(size + 1 > data.length)
             increaseArrayList();
-        data[this.size++] = element;
+        data[this.size] = element;
         this.size++;
         return true;
     }
@@ -44,7 +44,7 @@ public class MyArrayList<T> {
             throw new IndexOutOfBoundsException();
 
         T removedData = data[index];
-        data[index] = null;
+        data[index] = null; //메모리 누수 방지
         data = decreaseArrayList();
         this.size--;
         return removedData;
