@@ -1,7 +1,5 @@
 package com.ll;
 
-import java.util.stream.IntStream;
-
 public class MyArrayList<T> {
     private final boolean debug = false;
     private T[] data;
@@ -10,25 +8,29 @@ public class MyArrayList<T> {
     public MyArrayList() {
         this(2);
     }
-    public MyArrayList(int initialLength){
+
+    public MyArrayList(int initialLength) {
         data = (T[]) new Object[initialLength];
     }
 
-    public int size() { return this.size; }
+    public int size() {
+        return this.size;
+    }
+
     public boolean isEmpty() {
         return this.size() == 0;
     }
 
     public boolean add(T element) {
-        if(size + 1 > data.length)
+        if (size + 1 > data.length)
             increaseArrayList();
         data[this.size] = element;
         this.size++;
         return true;
     }
 
-    public boolean add(int index, T element){
-        if(size + 1 > data.length)
+    public boolean add(int index, T element) {
+        if (size + 1 > data.length)
             increaseArrayList();
 
         makeEmptyIndex(index);
@@ -40,18 +42,18 @@ public class MyArrayList<T> {
     }
 
     public T remove(int index) {
-        if(index >= data.length || index < 0)
+        if (index >= data.length || index < 0)
             throw new IndexOutOfBoundsException();
 
         T removedData = data[index];
-        data[index] = null; //메모리 누수 방지
+        data[size - 1] = null; //메모리 누수 방지
         data = decreaseArrayList();
         this.size--;
         return removedData;
     }
 
     public T get(int index) {
-        if(0 <= index && index <= this.size)
+        if (0 <= index && index <= this.size)
             return data[index];
 
         throw new IndexOutOfBoundsException();
@@ -62,8 +64,8 @@ public class MyArrayList<T> {
     }
 
     public int indexOf(T element) {
-        for(int i=0 ; i<this.size ; i++){
-            if(data[i].equals(element))
+        for (int i = 0; i < this.size; i++) {
+            if (data[i].equals(element))
                 return i;
         }
         return -1;
@@ -82,18 +84,18 @@ public class MyArrayList<T> {
     }
 
     private void makeEmptyIndex(int index) {
-        for(int i = size - 1; i >=index ; i--)
+        for (int i = size - 1; i >= index; i--)
             data[i + 1] = data[i];
     }
 
     private void increaseArrayList() {
-        T[] newdata = (T[]) new Object[this.size*2];
-        if(debug){
+        T[] newdata = (T[]) new Object[this.size * 2];
+        if (debug) {
             System.out.printf("배열 크기 : %d \n", newdata.length);
         }
 
-        if(this.size > 0) {
-            for(int i=0 ; i<this.size ;i++)
+        if (this.size > 0) {
+            for (int i = 0; i < this.size; i++)
                 newdata[i] = data[i];
         }
 
@@ -101,10 +103,10 @@ public class MyArrayList<T> {
     }
 
     private T[] decreaseArrayList() {
-        T[] newdata = (T[]) new Object[this.size-1];
+        T[] newdata = (T[]) new Object[this.size - 1];
         int index = 0;
-        for(T element : data){
-            if(element != null)
+        for (T element : data) {
+            if (element != null)
                 newdata[index++] = element;
         }
         return newdata;

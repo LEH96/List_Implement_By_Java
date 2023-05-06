@@ -1,4 +1,3 @@
-
 import com.ll.MyHashMap;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -24,20 +23,23 @@ class HashMapTests {
     void testGet() {
         map.put("Key1", 1);
         map.put("Key2", 2);
+
         assertThat(map.get("Key1")).isEqualTo(1);
+
         assertThat(map.get("Key2")).isEqualTo(2);
     }
 
     @Test
     @DisplayName("배열 자동 증가")
     void testPut2() {
-        map.put("Key1",1);
-        map.put("Key2",2);
+        map.put("Key1", 1);
+        map.put("Key2", 2);
 
-        assertThat(map.put("Key2",3)).isEqualTo(2);
+        assertThat(map.put("Key2", 3)).isEqualTo(2);
+
         assertThat(map.size()).isEqualTo(2);
 
-        map.put("Key3",3);
+        map.put("Key3", 3);
         assertThat(map.size()).isEqualTo(3);
     }
 
@@ -45,8 +47,32 @@ class HashMapTests {
     void testRemove() {
         map.put("Key1", 1);
         map.put("Key2", 2);
+
         assertThat(map.remove("Key2")).isEqualTo(2);
+
         assertThat(map.remove("Key3")).isEqualTo(null);
+
         assertThat(map.size()).isEqualTo(1);
     }
+
+    @Test
+    void testContains() {
+        map.put("Key1", 1);
+
+        assertThat(map.containsKey("Key1")).isTrue();
+        assertThat(map.containsKey("Key2")).isFalse();
+
+        assertThat(map.containsValue(1)).isTrue();
+        assertThat(map.containsValue(2)).isFalse();
+    }
+
+    @Test
+    void testClear() {
+        map.put("Key1", 1);
+        map.clear();
+        assertThat(map.size()).isEqualTo(0);
+        assertThat(map.isEmpty()).isTrue();
+    }
+
+
 }
